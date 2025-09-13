@@ -1,5 +1,5 @@
 import React from "react"
-import { Home, Search, User, History } from "lucide-react"
+import { Home, Search, User, History, Play } from "lucide-react"
 import { NavLink } from "react-router-dom"
 
 function SideNav() {
@@ -28,6 +28,16 @@ function SideNav() {
       >
         <Search size={22} />
         <span>Search</span>
+      </NavLink>
+
+      <NavLink
+        to="/food-reel"
+        className={({ isActive }) =>
+          `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`
+        }
+      >
+        <Play size={22} />
+        <span>Play</span>
       </NavLink>
 
       <NavLink

@@ -1,5 +1,5 @@
 import React from "react"
-import { Home, Search, User, History } from "lucide-react"
+import { Home, Search, User, History, Play } from "lucide-react"
 import { NavLink } from "react-router-dom"
 
 function BottomNav() {
@@ -29,6 +29,18 @@ function BottomNav() {
         <span>Search</span>
       </NavLink>
 
+
+      <NavLink
+        to="/food-reel"
+        className={({ isActive }) =>
+          `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`
+        }
+      >
+        <Play size={22} />
+        <span>Play</span>
+      </NavLink>
+
+
       <NavLink
         to="/history"
         className={({ isActive }) =>
@@ -38,6 +50,8 @@ function BottomNav() {
         <History size={22} />
         <span>History</span>
       </NavLink>
+
+
 
       <NavLink
         to="/profile"

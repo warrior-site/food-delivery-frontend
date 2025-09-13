@@ -15,6 +15,7 @@ createRoot(document.getElementById('root')).render(
           <div className='side-nav'>
             <SideNav/>
           </div>
+         
 
           <div className='main-content w-full h-full '>
             <App />

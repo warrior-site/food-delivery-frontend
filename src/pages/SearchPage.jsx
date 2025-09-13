@@ -1,8 +1,9 @@
 import React from "react"
 import { Search as SearchIcon, MapPin, Star } from "lucide-react"
+import { Link } from "react-router-dom"
 
 function SearchPage() {
-  const results = Array.from({ length: 10 }).map((_, i) => ({
+  const results = Array.from({ length: 5 }).map((_, i) => ({
     id: i + 1,
     name: `Dish ${i + 1}`,
     price: 150 + i * 10,
@@ -35,11 +36,11 @@ function SearchPage() {
         <div className="max-w-4xl mx-auto px-4">
           <ul className="space-y-3 md:space-y-4">
             {results.map((item) => (
-              <li
-                key={item.id}
-                className="flex flex-col md:flex-row md:items-center justify-between bg-gray-800/60 border border-gray-700 rounded-lg p-4 hover:bg-gray-800/80 transition"
-              >
-                {/* Left side: name, category, description */}
+              <Link to={`/order-food/${item.id}`} key={item.id}>
+                <li
+                  className="flex flex-col  m-3 md:flex-row md:items-center justify-between bg-gray-800/60 border border-gray-700 rounded-lg p-4 hover:bg-gray-800/80 transition"
+                >
+                  {/* Left side: name, category, description */}
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold">{item.name}</h3>
                   <p className="text-sm text-gray-400">
@@ -65,6 +66,8 @@ function SearchPage() {
                   </div>
                 </div>
               </li>
+              </Link>
+              
             ))}
           </ul>
         </div>

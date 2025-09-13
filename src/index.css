@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+
+@media (min-width: 768px) {
+.bottom-nav-mobile {
+    display: none;
+}
+}
+@media (max-width: 768px) {
+.side-nav{
+    display: none;
+}
+.content-wrap {
+    flex-direction: column;
+}
+
+}
+
+.content-home::-webkit-scrollbar{
+    display:none;
+}

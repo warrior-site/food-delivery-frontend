@@ -5,7 +5,6 @@ import { Link } from "react-router-dom"
 
 function HomePage() {
   const feedData = [
-    // Food items
     {
       type: "food",
       name: "Paneer Tikka",
@@ -52,7 +51,6 @@ function HomePage() {
       price: 249,
     },
 
-    // Hotels block (after 5 foods)
     {
       type: "hotels",
       hotels: [
@@ -86,165 +84,103 @@ function HomePage() {
         },
       ],
     },
-
-    // More foods again
-    {
+     {
       type: "food",
-      name: "Chicken Biryani",
-      img: "https://example.com/images/biryani.jpg",
-      category: "Indian",
-      description: "Aromatic rice cooked with chicken and spices.",
-      location: "Hyderabad, India",
-      price: 299,
+      name: "Veg Pizza",
+      img: "https://example.com/images/pizza.jpg",
+      category: "Italian",
+      description: "Loaded with fresh vegetables and mozzarella.",
+      location: "Pune, India",
+      price: 249,
     },
-    {
-      type: "food",
-      name: "Ice Cream Sundae",
-      img: "https://example.com/images/sundae.jpg",
-      category: "Dessert",
-      description: "Vanilla ice cream topped with nuts & chocolate.",
-      location: "Chennai, India",
-      price: 129,
-    },
-    // Hotels block (after 5 foods)
-    {
-      type: "hotels",
-      hotels: [
-        {
-          name: "Taj Palace",
-          img: "https://example.com/images/taj.jpg",
-          location: "Delhi, India",
-          rating: 4.8,
-          category: "Luxury",
-        },
-        {
-          name: "ITC Grand",
-          img: "https://example.com/images/itc.jpg",
-          location: "Mumbai, India",
-          rating: 4.6,
-          category: "Business",
-        },
-        {
-          name: "OYO Rooms",
-          img: "https://example.com/images/oyo.jpg",
-          location: "Lucknow, India",
-          rating: 4.0,
-          category: "Budget",
-        },
-        {
-          name: "The Leela",
-          img: "https://example.com/images/leela.jpg",
-          location: "Bangalore, India",
-          rating: 4.7,
-          category: "Luxury",
-        },
-      ],
-    },
-  ];
-
+  ]
 
   return (
-    <div className="h-screen w-full pl-[1rem] pr-[1rem] flex flex-col overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+    <div className="h-screen w-full px-4 flex flex-col overflow-hidden bg-white">
       {/* Scrollable Content */}
-      <div className="content-home flex-1 overflow-y-auto pt-3">
+      <div className="content-home flex-1 overflow-y-auto pt-6">
 
         {/* Welcome Section */}
-        <div className="mb-6 text-center">
-          <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-500">
-            WELCOME, @MASTER
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-pink-500">
+            Welcome, @Master
           </h1>
+          <p className="text-gray-500 mt-1">Discover food & hotels around you</p>
         </div>
 
-        {/* Responsive Card Grid */}
-        <div className="flex flex-wrap gap-4 justify-center">
+        {/* Card Grid */}
+        <div className="flex flex-wrap gap-6 justify-center">
           {feedData.map((item, i) => (
-            (item.type == "food" ? <div
-              key={i}
-              className="w-full sm:w-[48%] lg:w-[30%] h-[18rem] flex flex-col border border-gray-700 text-white rounded-lg overflow-hidden shadow-md shadow-black/40 bg-gradient-to-br from-gray-800 to-gray-900"
-            >
-              {/* Top content (split into two halves) */}
-              <div className="flex flex-1">
-                {/* Image */}
-                <div className="w-1/2 h-full">
-                  <img
-                    className="object-cover h-full w-full rounded-l-lg"
-                    src={item.img}
-                  />
+            item.type === "food" ? (
+              <div
+                key={i}
+                className="w-full sm:w-[48%] lg:w-[30%] flex flex-col rounded-xl border border-gray-200 overflow-hidden shadow-md hover:shadow-lg transition bg-white"
+              >
+                {/* Top content */}
+                <div className="flex flex-1">
+                  {/* Image */}
+                  <div className="w-1/2 h-full">
+                    <img
+                      className="object-cover h-full w-full rounded-l-xl"
+                      src={item.img}
+                      alt={item.name}
+                    />
+                  </div>
+
+                  {/* Details */}
+                  <div className="w-1/2 flex flex-col justify-center p-4">
+                    <div className="flex justify-between items-center mb-2">
+                      <h2 className="font-semibold text-lg text-gray-900">{item.name}</h2>
+                      <span className="text-amber-600 font-bold">₹{item.price}</span>
+                    </div>
+
+                    <div className="text-sm text-gray-500 mb-1">
+                      {item.category}
+                    </div>
+
+                    <p className="text-xs text-gray-500 mb-3 line-clamp-2">
+                      {item.description}
+                    </p>
+
+                    <div className="flex items-center text-xs text-gray-500 mb-2">
+                      <MapPin size={14} className="mr-1 text-amber-500" />
+                      <span>{item.location}</span>
+                    </div>
+
+                    <div className="flex items-center gap-1 text-amber-500">
+                      {Array.from({ length: 5 }).map((_, idx) => (
+                        <Star
+                          key={idx}
+                          size={16}
+                          className={idx < 4 ? "fill-current" : ""}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                {/* Details */}
-                <div className="w-1/2 flex flex-col justify-center p-3 text-gray-200">
-                  {/* Food Name + Price */}
-                  <div className="flex justify-between items-center mb-1">
-                    <h2 className="font-semibold text-lg text-white">{item.name}</h2>
-                    <span className="text-amber-400 font-bold">₹{item.price}</span>
-                  </div>
+                {/* Bottom bar */}
+                <div className="h-[3rem] w-full bg-gradient-to-r from-amber-400 to-pink-400 flex items-center justify-around px-3">
+                  <Link to={`/order-food/${i}`}>
+                    <button className="flex items-center gap-1 bg-white text-gray-900 px-3 py-1 rounded-md shadow hover:bg-gray-100 transition">
+                      <ShoppingBag size={18} />
+                      <span className="text-sm font-medium">Order</span>
+                    </button>
+                  </Link>
 
-                  {/* Category */}
-                  <div className="text-sm text-gray-400 mb-1">Category: {item.category}</div>
-
-                  {/* Short Description */}
-                  <p className="text-xs text-gray-400 mb-2 line-clamp-2">
-                    {item.description}
-                  </p>
-
-                  {/* Location */}
-                  <div className="flex items-center text-xs text-gray-400 mb-2">
-                    <MapPin size={14} className="mr-1 text-amber-500" />
-                    <span>Delhi, India</span>
-                  </div>
-
-                  {/* Rating */}
-                  <div className="flex items-center gap-1 text-amber-500">
-                    {Array.from({ length: 5 }).map((_, idx) => (
-                      <Star
-                        key={idx}
-                        size={16}
-                        className={idx < 4 ? "fill-current" : ""}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom footer bar */}
-              <div className="h-[3rem] w-full bg-gradient-to-r from-amber-500 to-pink-500 flex items-center justify-around px-2">
-                <Link to={`/order-food/${i}`}>
-                  <button className="flex items-center gap-1 bg-black text-white px-3 py-1 rounded-md hover:bg-gray-800 transition">
-                    <ShoppingBag size={18} />
-                    <span className="text-sm font-medium">Order Food</span>
+                  <button className="flex items-center gap-1 bg-white text-gray-900 px-3 py-1 rounded-md shadow hover:bg-gray-100 transition">
+                    <Star size={18} />
+                    <span className="text-sm font-medium">Favorite</span>
                   </button>
-                </Link>
-
-                <button className="flex items-center gap-1 bg-black text-white px-3 py-1 rounded-md hover:bg-gray-800 transition">
-                  <Star size={18} />
-                  <span className="text-sm font-medium">Add to Fav</span>
-                </button>
-              </div>
-              {/* {item.type === "hotels" && (
-                <div className="absolute top-2 left-2 bg-amber-500 w-full h-[15rem] text-black px-2 py-1 text-xs font-semibold rounded">
-                  {item.hotels.length} Hotels
                 </div>
-              )} */}
-            </div>
-              :
-              //hotels 
-              <div className="h-[15rem] bg-white border border-gray-700 text-black rounded-lg overflow-hidden shadow-md shadow-black/40 w-full">
-                {/* Wrapper switches between horizontal scroll (mobile) and grid (md+) */}
-                <div
-                  className="
-      h-full gap-4 px-4 py-2
-      flex overflow-x-auto md:overflow-x-hidden
-      md:grid md:grid-cols-4
-    "
-                >
+              </div>
+            ) : (
+              // Hotels block
+              <div className="w-full bg-white border border-gray-200 rounded-xl shadow-md p-4">
+                <div className="flex gap-4 overflow-x-auto md:grid md:grid-cols-4 md:overflow-hidden">
                   {item.hotels.map((hotel, idx) => (
-                    <Link to={`/hotel-detail/${idx}`} key={idx} className="w-[200px] md:w-auto flex-shrink-0">
-                      <div
-                        key={idx}
-                        className="w-[200px] md:w-auto flex-shrink-0 bg-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
-                      >
-                        {/* Hotel Image */}
+                    <Link to={`/hotel-detail/${idx}`} key={idx} className="flex-shrink-0 w-[200px] md:w-auto">
+                      <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition">
                         <div className="h-28 w-full overflow-hidden rounded-t-lg">
                           <img
                             src={hotel.img}
@@ -252,34 +188,24 @@ function HomePage() {
                             className="h-full w-full object-cover"
                           />
                         </div>
-
-                        {/* Content */}
-                        <div className="p-2 flex flex-col gap-1">
-                          <h3 className="text-sm font-semibold truncate">{hotel.name}</h3>
-                          <p className="text-xs text-gray-600 truncate">{hotel.location}</p>
-
-                          {/* Rating + Category */}
+                        <div className="p-2">
+                          <h3 className="text-sm font-semibold text-gray-900 truncate">{hotel.name}</h3>
+                          <p className="text-xs text-gray-500 truncate">{hotel.location}</p>
                           <div className="flex items-center justify-between text-xs mt-1">
-                            <span className="flex items-center gap-1">
+                            <span className="flex items-center gap-1 text-amber-500">
                               ⭐ <span>{hotel.rating}</span>
                             </span>
-                            <span className="px-2 py-0.5 bg-gray-200 rounded-full text-[10px]">
+                            <span className="px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full text-[10px]">
                               {hotel.category}
                             </span>
                           </div>
                         </div>
                       </div>
                     </Link>
-
                   ))}
                 </div>
               </div>
-
-
-              //ends hotel
             )
-
-
           ))}
         </div>
       </div>

@@ -14,17 +14,17 @@ function SearchPage() {
   }))
 
   return (
-    <div className="h-screen w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white flex flex-col overflow-hidden">
+    <div className="h-screen w-full bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900 flex flex-col overflow-hidden">
       {/* Header / search bar */}
       <div className="p-4">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+          <div className="flex items-center bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md">
             <input
               type="text"
               placeholder="Search dishes or restaurants..."
-              className="flex-1 px-4 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none"
+              className="flex-1 px-4 py-2 bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
             />
-            <button className="px-4 py-2 bg-amber-500 hover:bg-amber-600 transition">
+            <button className="px-4 py-2 bg-amber-500 hover:bg-amber-600 transition text-white">
               <SearchIcon size={20} />
             </button>
           </div>
@@ -38,36 +38,35 @@ function SearchPage() {
             {results.map((item) => (
               <Link to={`/order-food/${item.id}`} key={item.id}>
                 <li
-                  className="flex flex-col  m-3 md:flex-row md:items-center justify-between bg-gray-800/60 border border-gray-700 rounded-lg p-4 hover:bg-gray-800/80 transition"
+                  className="flex flex-col m-3 md:flex-row md:items-center justify-between bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg shadow-sm transition"
                 >
                   {/* Left side: name, category, description */}
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold">{item.name}</h3>
-                  <p className="text-sm text-gray-400">
-                    {item.category} · {item.description}
-                  </p>
-                  <div className="flex items-center gap-1 mt-1 text-gray-400 text-sm">
-                    <MapPin size={14} className="text-amber-500" />
-                    {item.location}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
+                    <p className="text-sm text-gray-500">
+                      {item.category} · {item.description}
+                    </p>
+                    <div className="flex items-center gap-1 mt-1 text-gray-500 text-sm">
+                      <MapPin size={14} className="text-amber-500" />
+                      {item.location}
+                    </div>
                   </div>
-                </div>
 
-                {/* Right side: price + rating */}
-                <div className="flex items-center justify-between md:justify-end gap-4 mt-3 md:mt-0">
-                  <span className="text-amber-400 font-bold">₹{item.price}</span>
-                  <div className="flex items-center gap-1 text-amber-400">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        size={16}
-                        className={i < item.rating ? "fill-amber-400" : ""}
-                      />
-                    ))}
+                  {/* Right side: price + rating */}
+                  <div className="flex items-center justify-between md:justify-end gap-4 mt-3 md:mt-0">
+                    <span className="text-amber-600 font-bold">₹{item.price}</span>
+                    <div className="flex items-center gap-1 text-amber-500">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star
+                          key={i}
+                          size={16}
+                          className={i < item.rating ? "fill-amber-400" : "text-gray-300"}
+                        />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
               </Link>
-              
             ))}
           </ul>
         </div>

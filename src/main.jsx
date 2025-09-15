@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter >
       <div className="app-main h-screen flex flex-col">
         {/* Main content fills available space */}
-        <div className="content-wrap flex flex-1 overflow-auto bg-amber-300">
+        <div className="content-wrap flex flex-1 overflow-auto ">
           <div className='side-nav'>
             <SideNav/>
           </div>

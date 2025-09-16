@@ -5,10 +5,13 @@ import App from './App.jsx'
 import BottomNav from './components/BottomNav.jsx'
 import {BrowserRouter} from 'react-router-dom'
 import SideNav from './components/SideNav.jsx'
+import { store } from './store/store.js'
+import {Provider} from 'react-redux'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter >
+    <Provider store={store}>
+       <BrowserRouter >
       <div className="app-main h-screen flex flex-col">
         {/* Main content fills available space */}
         <div className="content-wrap flex flex-1 overflow-auto ">
@@ -28,6 +31,8 @@ createRoot(document.getElementById('root')).render(
         </div>
       </div>
     </BrowserRouter>
+    </Provider>
+   
 
   </StrictMode>
 )

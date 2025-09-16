@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 function ProfilePage() {
+
+  const user1=useSelector((state)=>state.user.user)
+  console.log("user data in profile page", user1)
   // Mock User
   const user = {
     name: "Hritvik Sharma",
@@ -69,14 +73,14 @@ function ProfilePage() {
       {/* Profile Header */}
       <div className="flex flex-col md:flex-row items-center md:items-start gap-4 bg-white p-4 rounded-xl shadow-md">
         <img
-          src={user.image}
+          src={user1.profilePhoto || user.image}
           alt="profile"
           className="w-24 h-24 rounded-full object-cover"
         />
         <div className="flex-1">
-          <h2 className="text-xl font-bold">{user.name}</h2>
-          <p className="text-gray-600">{user.email}</p>
-          <p className="text-gray-500 text-sm">{user.location}</p>
+          <h2 className="text-xl font-bold">{user1.username || user.name}</h2>
+          <p className="text-gray-600">{user1.email || user.email}</p>
+          <p className="text-gray-500 text-sm">{ user.location}</p>
           <button className="mt-2 px-4 py-1 bg-blue-500 text-white rounded-lg">
             Edit Profile
           </button>

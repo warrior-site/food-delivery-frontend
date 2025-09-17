@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   user: null,
-  fav: null,
+  fav: [],
 }
 
 const userSlice = createSlice({
@@ -21,5 +21,5 @@ const userSlice = createSlice({
   },
 })
 
-export const { setUser,clearUser } = userSlice.actions
+export const { setUser,clearUser, setFav } = userSlice.actions
 export default userSlice.reducer

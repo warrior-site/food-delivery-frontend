@@ -2,7 +2,7 @@ import React,{useEffect,useState} from "react"
 import { useForm } from "react-hook-form"
 import{useDispatch} from "react-redux"
 import { checkEmail, signUpUser } from "../store/userAction"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 function SignupPage() {
   const {
     register,
@@ -119,9 +119,12 @@ function SignupPage() {
         {/* Extra link */}
         <p className="text-center text-gray-600 text-sm mt-4">
           Already have an account?{" "}
+          <Link to={"/login"}>
           <span className="text-amber-500 font-semibold cursor-pointer">
             Login
           </span>
+          </Link>
+          
         </p>
       </div>
     </div>

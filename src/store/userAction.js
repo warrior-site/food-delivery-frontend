@@ -1,5 +1,5 @@
 import axios from "axios"
-import { setUser,clearUser } from "./userSlice"
+import { setUser,clearUser,setFav } from "./userSlice"
 
 export const signUpUser = (userData) => async (dispatch) => {
     try {
@@ -84,8 +84,19 @@ export const checkAuth = () => async (dispatch) => {
 
 export const getFavHotels = (userId) => async (dispatch) => {
   try {
-      const response = await axios.get(`http://localhost:4000/api/user/favorites/${userId}`, { withCredentials: true });
-      dispatch(setFav(response.data.favorites));
+      const response = await axios.get(`http://localhost:4000/api/user/get-fav/${userId}`, { withCredentials: true });
+      dispatch(setFav(response.data.fav));
+      return response;
+  } catch (error) {
+      console.error("Error fetching favorite hotels:", error);
+  }
+};
+
+export const getRecommendation = (userId) => async (dispatch) => {
+  try {
+      const response = await axios.get(`http://localhost:4000/api/user/get-recommendations/${userId}`, { withCredentials: true });
+      dispatch(setFav(response.data.fav));
+      return response;
   } catch (error) {
       console.error("Error fetching favorite hotels:", error);
   }

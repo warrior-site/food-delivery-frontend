@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import {useDispatch} from "react-redux"
 import { loginUser } from "../store/userAction";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const {
@@ -62,7 +62,7 @@ function LoginPage() {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition"
+            className="w-full py-2 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-700 transition"
           >
             Login
           </button>
@@ -71,9 +71,9 @@ function LoginPage() {
         {/* Small note */}
         <p className="text-center text-sm text-gray-600 mt-4">
           Don’t have an account?{" "}
-          <a href="/signup" className="text-blue-600 hover:underline">
-            Sign Up
-          </a>
+          <Link to={"/signup"}>
+            <span className="text-yellow-600 hover:underline">Sign Up</span>
+          </Link>
         </p>
       </div>
     </div>

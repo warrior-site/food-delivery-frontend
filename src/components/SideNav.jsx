@@ -9,7 +9,7 @@ function SideNav() {
 
   return (
     // Hidden on mobile, flex column only on md and larger
-    <div className="hidden md:flex flex-col items-start h-full w-[15rem] bg-gray-800 gap-3 text-sm p-4">
+    <div className="hidden md:flex flex-col items-start h-full w-[15rem] bg-gray-800 gap-3 text-sm p-4 md:w-[8rem] lg:w-[15rem]">
       <NavLink
         to="/"
         className={({ isActive }) =>

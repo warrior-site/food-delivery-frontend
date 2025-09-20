@@ -1,9 +1,36 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import "../index.css"
 import { ShoppingBag, Star, MapPin } from "lucide-react"
 import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { getRecommendation } from "../store/userAction"
 
 function HomePage() {
+
+  const [page, setPage] = useState(1)
+  const [totalPage, setTotalPage] = useState(1)
+  const [totalItem, settotalItem] = useState(0)
+
+  const dispatch = useDispatch()
+  const { recommendations } = useSelector((state) => state.user)
+  const { user } = useSelector((state) => state.user)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("fetching recommendation")
+      const res = await dispatch(getRecommendation(user._id, page))
+      if (res?.data?.success) {
+        console.log("recommendation data", res.data)
+        setTotalPage(res.data.totalPages)
+        settotalItem(res.data.totalItems)
+      }
+    }
+
+    if (user?._id) {
+      fetchData()
+    }
+  }, [user?._id, page, dispatch]) // dependencies so it runs only when needed
+
   const feedData = [
     {
       type: "food",
@@ -84,7 +111,7 @@ function HomePage() {
         },
       ],
     },
-     {
+    {
       type: "food",
       name: "Veg Pizza",
       img: "https://example.com/images/pizza.jpg",

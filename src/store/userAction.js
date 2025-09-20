@@ -1,5 +1,5 @@
 import axios from "axios"
-import { setUser,clearUser,setFav } from "./userSlice"
+import { setUser,clearUser,setFav, setRecommendations } from "./userSlice"
 
 export const signUpUser = (userData) => async (dispatch) => {
     try {
@@ -92,12 +92,12 @@ export const getFavHotels = (userId) => async (dispatch) => {
   }
 };
 
-export const getRecommendation = (userId) => async (dispatch) => {
+export const getRecommendation = (userId,page) => async (dispatch) => {
   try {
-      const response = await axios.get(`http://localhost:4000/api/user/get-recommendations/${userId}`, { withCredentials: true });
-      dispatch(setFav(response.data.fav));
+      const response = await axios.get(`http://localhost:4000/api/user/get-recommendation/${userId}?page=${page}&limit=10`, { withCredentials: true });
+      dispatch(setRecommendations(response.data));
       return response;
   } catch (error) {
-      console.error("Error fetching favorite hotels:", error);
+      console.error("Error fetching recommendations:", error);
   }
 };
